@@ -14,7 +14,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
 });
 
 function authenticateUser(username, password) {
-    fetch('http://localhost:3000/auth', {
+    fetch('https://web2lab2-ukts.onrender.com/auth', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ function authenticateUser(username, password) {
 
 
 function authenticateUserStrong(username, password) {
-        fetch('http://localhost:3000/authStrong', {
+        fetch('https://web2lab2-ukts.onrender.com/authStrong', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',

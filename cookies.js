@@ -27,7 +27,7 @@ function getSessionId() {
     }
 
 function setSessionId() {
-    fetch('http://localhost:3000/')
+    fetch('https://web2lab2-ukts.onrender.com/')
       .then(response => response.json())
       .then(
         data => {
@@ -40,7 +40,7 @@ function setSessionId() {
 }
 
 function authenticateUserCookie(username, password) {
-    fetch('http://localhost:3000/authCookie', {
+    fetch('https://web2lab2-ukts.onrender.com/authCookie', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ function authenticateUserCookie(username, password) {
 
 function authenticateUserCookieStrong(username, password) {
     const sessionId = getSessionId();
-    fetch('http://localhost:3000/authCookieStrong', {
+    fetch('https://web2lab2-ukts.onrender.com/authCookieStrong', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
