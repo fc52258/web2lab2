@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lab2 - 0036522584</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel="stylesheet" href="./styles.css">  
+    </head>
+    <body>
+        <div class="logo text-center">
+            <h1>LAB2: Ranjivosti</h1>
+        </div>
+        
+        <div class="wrapper">
+            <div class="inner-warpper text-center">
+              <h2 class="title">1. SQL Injection</h2>
+              <h5>UPUTA: ako želite testirati sql injection uključite ranjivost, password unesite proizvoljno, a kao username unesite:</h5>
+              <h4>admin'--</h4>
+              <form action="" id="loginForm">
+                
+                <div class="input-group">
+                  <label for="username">Username</label>
+                  <input class="form-control" name="username" id="username" type="text" placeholder="" required/>
+                  <span class="lighting"></span>
+                </div>
+
+                <div class="input-group">
+                  <label for="password">Password</label>
+                  <input class="form-control" name="password" id="password" type="password" placeholder="" required />
+                  <span class="lighting"></span>
+                </div>
+          
+                <div class="clearfix supporter">
+                    <div class="checkboxgroup">
+                        <label for="checkbox1">Uključi ranjivost</label>
+                      <input id="checkbox1" type="checkbox">
+                    </div>
+                </div>
+                
+                <div style="padding-top: 10px;">
+                    <button type="submit" id="injectionbtn">Login</button>
+                </div>
+
+              </form>
+            </div>
+            <div class="info-wrapper text-center">
+              <a href="https://www.invicti.com/blog/web-security/sql-injection-cheat-sheet/">Zanima vas više o SQL injectionu? <span class="text-primary">Saznaj više</span></a>
+            </div>
+          </div>
+
+        
+        </div>
+        <div class="wrapper">
+            <div class="inner-warpper text-center">
+              <h2 class="title">2. Loša autentifikacija: Loše poruke o greškama</h2>
+              <h5>UPUTA: ako želite testirati lošu autentifikaciju uključite ranjivost, unesite kombinaciju username | password</h5>
+              <h4>user | lozinka1</h4>
+              <h5>Nakon toga probajte kombinaciju username | password </h5>
+              <h4>user1 | lozinka1</h4>
+              <form action="" id="loginForm2">
+                
+                <div class="input-group">
+                  <label for="username2">Username</label>
+                  <input class="form-control" name="username2" id="username2" type="text" placeholder="" required/>
+                  <span class="lighting"></span>
+                </div>
+
+                <div class="input-group">
+                  <label for="password2">Password</label>
+                  <input class="form-control" name="password2" id="password2" type="password" placeholder="" required />
+                  <span class="lighting"></span>
+                </div>
+          
+                <div class="clearfix supporter">
+                    <div class="checkboxgroup">
+                        <label for="checkbox2">Uključi ranjivost</label>
+                      <input id="checkbox2" type="checkbox">
+                    </div>
+                </div>
+                
+                <div style="padding-top: 10px;">
+                    <button type="submit" id="injectionbtn2">Login</button>
+                </div>
+
+              </form>
+            </div>
+            <div class="info-wrapper text-center">
+              <a href="https://crashtest-security.com/broken-authentication-and-session-management/">Zanima vas više o lošoj autentifikaciji? <span class="text-primary">Saznaj više</span></a>
+            </div>
+          </div>
+
+        
+        </div>
+        <script src="sqlinjection.js"></script>
+        <script src="cookies.js"></script>
+        <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js'></script>
+        <script  src="./script.js"></script>
+    </body>
+</html>
