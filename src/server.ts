@@ -4,7 +4,9 @@ import { Pool } from 'pg';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import dotenv from 'dotenv';
+
+//console.log(require('dotenv').config());
+require('dotenv').config()
 
 function calculateSessionId(secretKey: string): string {
 
@@ -15,16 +17,16 @@ function calculateSessionId(secretKey: string): string {
   return sessionId;
 }
 
-dotenv.config();
+const externalUrl = process.env.RENDER_EXTERNAL_URL;
+const port = externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 3000
 
 const app = express();
-const port = 3000;
 
-const connectionString = 'postgres://lab1_2ogu_user:dbmIgmAjmXUAU7ZNBx3F5u3SO50O9hyB@dpg-ckv3c5mb0mos73ectqn0-a.oregon-postgres.render.com/lab1_2ogu';
-const secretKey = 'KfKYwe1zx4P1wxyGgLdj9hIaqEAeFBKk';
-
+//const connectionString = 'postgres://lab1_2ogu_user:dbmIgmAjmXUAU7ZNBx3F5u3SO50O9hyB@dpg-ckv3c5mb0mos73ectqn0-a.oregon-postgres.render.com/lab1_2ogu';
+//const secretKey = 'KfKYwe1zx4P1wxyGgLdj9hIaqEAeFBKk';
+//console.log(process.env)
 const pool = new Pool({
-  connectionString: connectionString,
+  connectionString: process.env.DATABASE_URL,
   ssl: true, 
 });
 
@@ -44,7 +46,7 @@ const globalMiddleware: Array<RequestHandler> = [
 app.use(...globalMiddleware);
 
 app.get('/', (req: Request, res: Response) => {
-  const sessionId = calculateSessionId(secretKey);
+  const sessionId = calculateSessionId(process.env.SECRET_KEY);
   res.json({message : 'SessionId set!', sessionId : sessionId});
 });
 
@@ -148,6 +150,23 @@ app.post('/authCookieStrong', async (req: Request, res: Response) => {
   }
 });
 
-app.listen(port, () => {
+/* app.listen(port, () => {
   console.log(`Server je pokrenut na http://localhost:${port}`);
 });
+ */
+const config = {
+  baseURL: externalUrl || `https://localhost:${port}`,
+};
+
+if (externalUrl) {
+  const hostname = '0.0.0.0'; //ne 127.0.0.1
+  app.listen(port, hostname, () => {
+      console.log(`Server running at http://${hostname}:${port}/ and from
+      outside on ${externalUrl}`);
+    }
+  );
+}else {
+  app.listen(port, function () {
+  console.log(`Server  locally running at http://localhost:${port}`);
+  });
+}
